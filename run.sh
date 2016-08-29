@@ -15,6 +15,7 @@ level=info
 [dns]
 port=${DNS_PORT}
 oldDNS.address=${OLDDNS_ADDR}
+oldDNS.port=${OLDDNS_PORT}
 [http]
 port=${HTTP_PORT}
 tlsPort=${TLS_PORT}

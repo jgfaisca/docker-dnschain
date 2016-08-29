@@ -39,8 +39,8 @@ RPC_PORT=$(docker exec $NMC_CT cat $NMC_CONF | grep rpcport | awk -F '[/=]' '{pr
 RPC_CONNECT=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $NMC_CT)
 
 # DNSChain configuration
-# (we recommend running PowerDNS yourself and sending it there)
-OLDDNS_ADDR="10.17.0.4"
+OLDDNS_ADDR="10.17.0.4" # we recommend running PowerDNS yourself and sending it there
+OLDDNS_PORT="53"
 
 # Create docker container
 docker run -d \
@@ -48,6 +48,7 @@ docker run -d \
   --name $DNSCHAIN_CT \
   --restart=always \
   -e OLDDNS_ADDR=$OLDDNS_ADDR \
+  -e OLDDNS_PORT=$OLDDNS_PORT \
   -e RPC_USER=$RPC_USER \
   -e RPC_PASS=$RPC_PASS \
   -e RPC_PORT=$RPC_PORT \
